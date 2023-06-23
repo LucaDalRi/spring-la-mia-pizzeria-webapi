@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
@@ -22,12 +23,12 @@ public class PizzaController {
     @Autowired
     private PizzaRepository pizzaRepository;
 
-    @GetMapping
-    public String list(Model model) {
-        List<Pizza> pizza = pizzaRepository.findAll();
-        model.addAttribute("pizza", pizza);
-        return "/pizza";
-    }
+//    @GetMapping
+//    public String list(Model model) {
+//        List<Pizza> pizza = pizzaRepository.findAll();
+//        model.addAttribute("pizza", pizza);
+//        return "/pizza";
+//    }
 
     @GetMapping("detail/{id}")
     public String detail(@PathVariable("id") Integer pizzaId, Model model) {
@@ -39,7 +40,20 @@ public class PizzaController {
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
+    }
 
+    @GetMapping
+    public String list(@RequestParam(name = "keyword", required = false) String searchString, Model model) {
+        List<Pizza> pizza;
+
+        if (searchString == null || searchString.isBlank()) {
+            pizza = pizzaRepository.findAll();
+        } else {
+            pizza = pizzaRepository.findByNome(searchString);
+        }
+        model.addAttribute("pizzaList", pizza);
+        model.addAttribute("searchInput", searchString == null ? "" : searchString);
+        return "/list";
     }
 
 

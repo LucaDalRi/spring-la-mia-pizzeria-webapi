@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+          name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <link>
+    <link th:href="@{/webjars/bootstrap/5.3.0/css/bootstrap.min.css}" th:rel="stylesheet"/>
+    <link rel="stylesheet" th:href="@{/webjars/font-awesome/6.4.0/css/all.min.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <title>Dettagli</title>
+</head>
+<body>
+<div class="container">
+    <h1>Book List</h1>
+    <hr>
+    <div>
+        <form method="GET" th:action="@{/}">
+            <div class="input-group">
+                <input class="form-control" name="keyword" placeholder="Cerca per nome"
+                       th:value="${searchInput}" type="search">
+                <button class="btn btn-outline-secondary" type="submit">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+    <table class="table" th:if="${pizzaList.size() > 0}">
+        <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Prezzo</th>
+            <th>Dettagli</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="pizza : ${pizzaList}">
+            <td th:text="${pizza.nome}"></td>
+            <td th:text="${pizza.prezzo} + €"></td>
+            <td>
+                <a th:href="@{|/detail/${pizza.id}|}"><i class="fa-solid fa-book"></i></a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="alert alert-info" th:unless="${pizzaList.size() > 0}">
+        Nessun risultato
+    </div>
+</div>
+<script th:src="@{/webjars/bootstrap/5.3.0/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

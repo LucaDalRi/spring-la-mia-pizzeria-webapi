@@ -12,6 +12,17 @@
     <title>Pagina index</title>
 </head>
 <body>
+<div>
+    <form method="GET" th:action="@{/pizza}">
+        <div class="input-group">
+            <input class="form-control" name="keyword" placeholder="Cerca per nome"
+                   th:value="${searchInput}" type="search">
+            <button class="btn btn-outline-secondary" type="submit">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </div>
+    </form>
+</div>
 <table>
     <thead>
     <tr>

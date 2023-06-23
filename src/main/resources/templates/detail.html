@@ -13,9 +13,17 @@
 </head>
 <body>
 <h1>Dettagli della pizza</h1>
-<h3 th:text="${pizza.nome}"></h3>
-<h3 th:text="${pizza.descrizione}"></h3>
-<h3 th:text="${pizza.prezzo}"></h3>
-<h3 th:text="${pizza.urlFoto}"></h3>
+<hr>
+<h2>Nome: </h2>
+<h4 th:text="${pizza.nome}"></h4>
+<hr>
+<h2>Descrizione: </h2>
+<h4 th:text="${pizza.descrizione}"></h4>
+<hr>
+<h2>Prezzo: </h2>
+<h4 th:text="${pizza.prezzo} + €"></h4>
+<hr>
+<img alt="Foto Pizza" th:src="${pizza.urlFoto}">
+<script th:src="@{/webjars/bootstrap/5.3.0/js/bootstrap.bundle.min.js}"></script>
 </body>
 </html>
