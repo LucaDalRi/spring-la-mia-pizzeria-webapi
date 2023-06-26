@@ -3,6 +3,7 @@ package org.lessons.springlibrary.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 import java.math.BigDecimal;
@@ -22,10 +23,12 @@ public class Pizza {
     @Size(min = 10, max = 300)
     private String descrizione;
     private String urlFoto;
+    @NotNull
     @Min(0)
     private BigDecimal prezzo;
 
     public Pizza() {
+        prezzo = BigDecimal.valueOf(0);
     }
 
     public Integer getId() {
