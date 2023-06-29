@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{/fragments/resources :: head(pageTitle='Offerta')}">
+</head>
+<body class="mx-5">
+<h1>Nuova Offerta</h1>
+<form id="offerta-form" method="post" th:action="@{/offertaCreate}" th:object="${offertaSpeciale}">
+    <div class="mb-3">
+        <label class="form-label" for="nomeOfferta">Nome dell'Offerta</label>
+        <input aria-describedby="nomeOfferta" class="form-control" id="nomeOfferta" required th:field="*{titolo}"
+               type="text">
+        <div class="form-text" id="pizzaText">* obbligatorio</div>
+        <div class="invalid-feedback" th:if="${#fields.hasErrors('titolo')}">
+            <ul>
+                <li th:each="err : ${#fields.errors('titolo')}" th:text="${err}"></li>
+            </ul>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" for="inizioOfferta">Inizio dell'offerta</label>
+        <input class="form-control" id="inizioOfferta" required th:field="*{dataInizio}" type="date">
+        <div class="form-text" id="descText">* obbligatorio</div>
+        <div class="invalid-feedback" th:if="${#fields.hasErrors('dataInizio')}">
+            <ul>
+                <li th:each="err : ${#fields.errors('dataInizio')}" th:text="${err}"></li>
+            </ul>
+        </div>
+    </div>
+    <label class="form-label" for="fineOfferta">Fine dell'offerta</label>
+    <div class="mb-3 input-group">
+        <input class="form-control" id="fineOfferta" required th:field="*{dataFine}" type="date">
+        <div class="invalid-feedback" th:if="${#fields.hasErrors('dataFine')}">
+            <ul>
+                <li th:each="err : ${#fields.errors('dataFine')}" th:text="${err}"></li>
+            </ul>
+        </div>
+    </div>
+    <div class="form-text" id="prezzoText">* obbligatorio</div>
+
+    <button class="btn btn-primary mt-3" type="submit">Invia</button>
+    <a th:href="@{/}">
+        <button class="btn btn-warning mt-3" type="button">Torna indietro</button>
+    </a>
+</form>
+</body>
+</html>

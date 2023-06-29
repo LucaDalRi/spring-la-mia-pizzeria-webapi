@@ -23,13 +23,6 @@ public class PizzaController {
     @Autowired
     private PizzaRepository pizzaRepository;
 
-//    @GetMapping
-//    public String list(Model model) {
-//        List<Pizza> pizza = pizzaRepository.findAll();
-//        model.addAttribute("pizza", pizza);
-//        return "/pizza";
-//    }
-
     @GetMapping("detail/{id}")
     public String detail(@PathVariable("id") Integer pizzaId, Model model) {
 
