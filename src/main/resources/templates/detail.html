@@ -19,7 +19,9 @@
 <h2>
     Offerte Speciali
 </h2>
-<span>offerte speciali qui</span>
-<a class="btn btn-primary me-1" th:href="@{|/detail/${pizza.id}|}">Aggiungi un'offerta</a>
+<span th:each="offerta : ${pizza.offertaSpeciale}" th:object="${offerta}">
+    <span th:text="*{titolo}"></span>
+</span>
+<a class="btn btn-primary me-1" th:href="@{/offertaCreate(pizzaId=${pizza.id})}">Aggiungi un'offerta</a>
 </body>
 </html>

@@ -25,9 +25,9 @@ public class OffertaSpecialeController {
     private OffertaSpecialeRepository offertaSpecialeRepository;
 
     @GetMapping("/offertaCreate")
-    public String create(Model model, @RequestParam("id") Integer id) {
+    public String create(Model model, @RequestParam("pizzaId") Integer pizzaId) {
         OffertaSpeciale offertaSpeciale = new OffertaSpeciale();
-        Optional<Pizza> pizza = pizzaRepository.findById(id);
+        Optional<Pizza> pizza = pizzaRepository.findById(pizzaId);
         offertaSpeciale.setPizza(pizza.get());
         model.addAttribute("offertaSpeciale", offertaSpeciale);
         return "/offertaCreate";
@@ -43,7 +43,8 @@ public class OffertaSpecialeController {
             return "/offertaCreate";
         }
         offertaSpecialeRepository.save(formOffertaSpeciale);
-        return "redirect:/list";
+        return "redirect:/";
     }
+
 
 }
