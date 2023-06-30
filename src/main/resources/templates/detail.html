@@ -19,13 +19,23 @@
 <h2>
     Offerte Speciali
 </h2>
-<div class="d-flex" th:each="offerta : ${pizza.offertaSpeciale}" th:object="${offerta}">
+<div th:each="offerta : ${pizza.offertaSpeciale}" th:object="${offerta}">
     <span th:text="*{titolo}"></span>
-    <a class="btn btn-primary me-1" th:href="@{|/offerta/edit/${offerta.id}|}"><i
-            class="fa-solid fa-pen-to-square"></i></a>
-    <form method="post" th:action="@{|/offerta/delete/${offerta.id}|}">
-        <button class="btn btn-primary me-1" type="submit"><i class="fa-solid fa-trash-can"></i></button>
-    </form>
+    <div>
+        <span>Data Inizio Offerta</span>
+        <span th:text="*{dataInizio}"></span>
+    </div>
+    <div>
+        <span>Data Fine Offerta</span>
+        <span th:text="*{dataFine}">data fine</span>
+    </div>
+    <div class="d-flex my-3">
+        <a class="btn btn-primary me-1" th:href="@{|/offerta/edit/${offerta.id}|}"><i
+                class="fa-solid fa-pen-to-square"></i></a>
+        <form method="post" th:action="@{|/offerta/delete/${offerta.id}|}">
+            <button class="btn btn-primary me-1" type="submit"><i class="fa-solid fa-trash-can"></i></button>
+        </form>
+    </div>
 </div>
 <a class="btn btn-primary me-1" th:href="@{/offerta/create(pizzaId=${pizza.id})}">Aggiungi un'offerta</a>
 </body>
