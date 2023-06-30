@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{/fragments/resources :: head(pageTitle='offerta')}">
+</head>
+<body class="mx-5">
+<h1>Modifica offerta</h1>
+<form id="pizza-form" method="post" th:action="@{|/edit/${offertaSpeciale.id}|}" th:object="${offertaSpeciale}">
+    <div class="mb-3">
+        <label class="form-label" for="nomePizza">Nome dell'offerta</label>
+        <input aria-describedby="nomePizza" class="form-control" id="nomePizza" required th:field="*{titolo}"
+               type="text">
+        <div class="form-text" id="pizzaText">* obbligatorio</div>
+        <div class="invalid-feedback" th:if="${#fields.hasErrors('titolo')}">
+            <ul>
+                <li th:each="err : ${#fields.errors('titolo')}" th:text="${err}"></li>
+            </ul>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" for="descrizionePizza">dataInizio</label>
+        <input class="form-control" id="descrizionePizza" required th:field="*{dataInizio}" type="text">
+        <div class="form-text" id="descText">* obbligatorio</div>
+        <div class="invalid-feedback" th:if="${#fields.hasErrors('dataInizio')}">
+            <ul>
+                <li th:each="err : ${#fields.errors('dataInizio')}" th:text="${err}"></li>
+            </ul>
+        </div>
+    </div>
+    <label class="form-label" for="prezzoPizza">dataFine</label>
+    <div class="mb-3 input-group">
+        <input class="form-control" id="prezzoPizza" required th:field="*{dataFine}" type="date">
+        <div class="invalid-feedback" th:if="${#fields.hasErrors('dataFine')}">
+            <ul>
+                <li th:each="err : ${#fields.errors('dataFine')}" th:text="${err}"></li>
+            </ul>
+        </div>
+    </div>
+    <div class="form-text" id="prezzoText">* obbligatorio</div>
+
+    <button class="btn btn-primary mt-3" type="submit">Invia</button>
+    <a th:href="@{/}">
+        <button class="btn btn-warning mt-3" type="button">Torna indietro</button>
+    </a>
+</form>
+</body>
+</html>
