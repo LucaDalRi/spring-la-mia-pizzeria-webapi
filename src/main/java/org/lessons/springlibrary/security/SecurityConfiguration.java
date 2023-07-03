@@ -32,11 +32,12 @@ public class SecurityConfiguration {
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests()
-                .requestMatchers("/offerta/**").hasAnyAuthority("ADMIN")
-                .requestMatchers("/offerta/detail").hasAuthority("USER")
-                .requestMatchers("/offerta/").hasAuthority("USER")
+                .requestMatchers("/create").hasAnyAuthority("ADMIN")
+                .requestMatchers("/edit/**").hasAnyAuthority("ADMIN")
+                .requestMatchers("/detail/**").hasAuthority("USER")
+                .requestMatchers("/").hasAuthority("USER")
                 .requestMatchers(HttpMethod.POST).hasAuthority("ADMIN")
-                .requestMatchers("/**").permitAll()
+                .requestMatchers("/").permitAll()
                 .and().formLogin()
                 .and().logout();
         return http.build();
