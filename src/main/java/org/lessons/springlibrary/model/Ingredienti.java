@@ -1,5 +1,6 @@
 package org.lessons.springlibrary.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -18,6 +19,7 @@ public class Ingredienti {
     @Column(nullable = false)
     private String nome;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "ingredienti")
     private List<Pizza> pizza = new ArrayList<>();
 

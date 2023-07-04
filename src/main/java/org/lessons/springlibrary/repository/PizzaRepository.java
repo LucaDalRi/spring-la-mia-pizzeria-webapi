@@ -7,5 +7,4 @@ import java.util.List;
 
 public interface PizzaRepository extends JpaRepository<Pizza, Integer> {
     List<Pizza> findByNome(String nome);
-
 }
